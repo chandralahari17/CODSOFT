@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #4facfe, #00f2fe); /* Gradient background */
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #218838;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .results h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .results ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .results ul li {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-weight: bold; /* Highlight movie titles */
+            background-color: #ffeb3b; /* Highlight background */
+            color: #333;
+        }
+
+        .results ul li:hover {
+            background-color: #ffd600;
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Movie Recommendation System</h2>
+
+    <div class="form-group">
+        <label for="genre">Enter your preferred genre (e.g., Action, Comedy):</label>
+        <input type="text" id="genre" placeholder="Enter genre">
+    </div>
+
+    <button class="button" onclick="recommendMovies()">Get Recommendations</button>
+
+    <div class="results" id="results"></div>
+</div>
+
+<script>
+// Sample movie dataset
+const movies = [
+    { title: 'Karthikeya', genres: ['Action', 'Adventure'] },
+    { title: 'Remo', genres: ['Drama', 'Romance'] },
+    { title: 'Pokiri', genres: ['Action', 'Thriller'] },
+    { title: 'Jathi Ratnalu', genres: ['Comedy'] },
+    { title: 'DJ Tillu', genres: ['Action', 'Comedy'] },
+];
+
+// Function to recommend movies based on user preferences
+function recommendMovies() {
+    const genreInput = document.getElementById('genre').value.trim().toLowerCase();
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+
+    if (!genreInput) {
+        resultsDiv.innerHTML = '<p>Please enter a genre to get recommendations.</p>';
+        return;
+    }
+
+    const recommendedMovies = movies.filter(movie => 
+        movie.genres.some(genre => genre.toLowerCase() === genreInput)
+    );
+
+    if (recommendedMovies.length === 0) {
+        resultsDiv.innerHTML = '<p>No movies found for the given genre.</p>';
+    } else {
+        resultsDiv.innerHTML = `<h3>Recommended Movies:</h3><ul>` +
+            recommendedMovies.map(movie => `<li>${movie.title}</li>`).join('') +
+            `</ul>`;
+    }
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
